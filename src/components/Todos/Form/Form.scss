@@ -1,0 +1,25 @@
+@import '~styles/variables';
+
+.Todos-Form {
+}
+
+.Todos-Form-Input {
+  width: 100%;
+  font-size: $body-font-size;
+  border: none;
+  border-bottom: 2px solid $text-color;
+
+  &::placeholder {
+    color: rgba($text-color, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid $highlight-color;
+
+    &::placeholder {
+      color: rgba($highlight-color, 0.4);
+    }
+  }
+}

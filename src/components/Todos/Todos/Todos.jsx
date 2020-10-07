@@ -1,12 +1,16 @@
 import React from 'react';
 
+import { Form } from '../Form';
 import './Todos.scss';
 
 function Todos() {
   return (
-    <div className="Todos">
-      Everything taken care of :)
-    </div>
+    <>
+      <Form />
+      <div className="Todos">
+        Everything taken care of :)
+      </div>
+    </>
   );
 }
 
