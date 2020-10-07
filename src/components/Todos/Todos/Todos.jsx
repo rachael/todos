@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
-import { Form } from '../Form';
+import { Form, Todo } from '..';
 import './Todos.scss';
 
 function Todos() {
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = useCallback((todo) => {
+    setTodos(todos.concat(todo));
+  }, [todos]);
+
+  const empty = !todos.length;
+  const emptyMessage = 'Everything taken care of :)';
+
   return (
     <>
-      <Form />
+      <Form addTodo={addTodo} />
       <div className="Todos">
-        Everything taken care of :)
+        {empty ? emptyMessage :
+          todos.map((todo, i) =>
+            <Todo
+              key={`todo-${i}`}
+              text={todo}
+            />
+          )
+        }
       </div>
     </>
   );

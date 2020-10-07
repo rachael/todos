@@ -12,9 +12,10 @@ function Form({
   }, []);
 
   const handleSubmit = useCallback((e) => {
-    addTodo(e.target.value);
+    addTodo(value);
     setValue('');
-  }, [addTodo]);
+    e.preventDefault();
+  }, [addTodo, value]);
 
   return (
     <div className="Todos-Form">
