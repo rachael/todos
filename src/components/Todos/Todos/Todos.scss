@@ -5,7 +5,11 @@
   margin-top: 2vmin;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   font-size: $body-font-size;
+}
+
+.Todo-Text_complete {
+  text-decoration: line-through;
 }

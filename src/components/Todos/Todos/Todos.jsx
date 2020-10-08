@@ -1,31 +1,32 @@
 import React, { useCallback, useState } from 'react';
 
-import { Form, Todo } from '..';
+import { Form } from '..';
+import TodoList from './TodoList';
 import './Todos.scss';
 
 function Todos() {
   const [todos, setTodos] = useState([]);
 
   const addTodo = useCallback((todo) => {
-    setTodos(todos.concat(todo));
+    setTodos(todos.concat({
+      text: todo,
+      complete: false,
+    }));
   }, [todos]);
 
-  const empty = !todos.length;
-  const emptyMessage = 'Everything taken care of :)';
+  const completeTodo = useCallback((index) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index].complete = !updatedTodos[index].complete;
+    setTodos(updatedTodos);
+  }, [todos]);
 
   return (
     <>
       <Form addTodo={addTodo} />
-      <div className="Todos">
-        {empty ? emptyMessage :
-          todos.map((todo, i) =>
-            <Todo
-              key={`todo-${i}`}
-              text={todo}
-            />
-          )
-        }
-      </div>
+      <TodoList
+        todos={todos}
+        completeTodo={completeTodo}
+      />
     </>
   );
 }

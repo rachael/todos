@@ -1,0 +1,12 @@
+.Todo-Text {
+  display: inline-block;
+  padding-left: 1vmin;
+}
+
+.Todo-Complete {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
