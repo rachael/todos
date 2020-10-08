@@ -7,9 +7,6 @@ function TodoList({
   completeTodo,
   removeTodo,
 }) {
-  const empty = !todos.length;
-  const emptyMessage = 'Everything taken care of :)';
-
   const todoElements = todos.map((todo, i) =>
     <Todo
       key={`todo-${i}`}
@@ -20,11 +17,9 @@ function TodoList({
     />
   );
 
-  const todoList = empty ? emptyMessage : todoElements;
-
   return (
     <div className="Todos">
-      {todoList}
+      {!!todos.length && todoElements}
     </div>
   );
 }
