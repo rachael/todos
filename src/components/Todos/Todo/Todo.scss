@@ -1,12 +1,27 @@
-.Todo-Text {
-  display: inline-block;
-  padding-left: 1vmin;
+.Todo {
+  width: 100%;
+  padding: 2vmin 0 0 0;
+  display: flex;
 }
 
-.Todo-Complete {
+.Todo-Text {
+  margin-left: 1vmin;
+}
+
+.Todo-Complete,
+.Todo-Remove {
   cursor: pointer;
 
   &:hover {
     opacity: 0.5;
   }
+}
+
+.Todo-Remove {
+  order: 3;
+  margin-left: auto;
+}
+
+.Todo-Remove:hover + .Todo-Text {
+  opacity: 0.5;
 }
