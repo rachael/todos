@@ -20,12 +20,19 @@ function Todos() {
     setTodos(updatedTodos);
   }, [todos]);
 
+  const removeTodo = useCallback((index) => {
+    const updatedTodos = [...todos];
+    updatedTodos.splice(index, 1);
+    setTodos(updatedTodos);
+  }, [todos]);
+
   return (
     <>
       <Form addTodo={addTodo} />
       <TodoList
         todos={todos}
         completeTodo={completeTodo}
+        removeTodo={removeTodo}
       />
     </>
   );

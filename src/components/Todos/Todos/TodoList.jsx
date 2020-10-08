@@ -5,6 +5,7 @@ import { Todo } from '..';
 function TodoList({
   todos,
   completeTodo,
+  removeTodo,
 }) {
   const empty = !todos.length;
   const emptyMessage = 'Everything taken care of :)';
@@ -15,6 +16,7 @@ function TodoList({
       text={todo.text}
       complete={todo.complete}
       completeTodo={() => completeTodo(i)}
+      removeTodo={() => removeTodo(i)}
     />
   );
 
