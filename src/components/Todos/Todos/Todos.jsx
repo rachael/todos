@@ -1,37 +1,31 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Form } from '..';
 import TodoList from './TodoList';
 
+import {
+  addTodo,
+  deleteTodo,
+  completeTodo,
+} from 'redux/actions';
+
 function Todos() {
-  const [todos, setTodos] = useState([]);
+  const dispatch = useDispatch();
 
-  const addTodo = useCallback((todo) => {
-    setTodos(todos.concat({
-      text: todo,
-      complete: false,
-    }));
-  }, [todos]);
+  const dispatchAddTodo = text => dispatch(addTodo(text));
+  const dispatchDeleteTodo = id => dispatch(deleteTodo(id));
+  const dispatchCompleteTodo = id => dispatch(completeTodo(id));
 
-  const completeTodo = useCallback((index) => {
-    const updatedTodos = [...todos];
-    updatedTodos[index].complete = !updatedTodos[index].complete;
-    setTodos(updatedTodos);
-  }, [todos]);
-
-  const removeTodo = useCallback((index) => {
-    const updatedTodos = [...todos];
-    updatedTodos.splice(index, 1);
-    setTodos(updatedTodos);
-  }, [todos]);
+  const todos = useSelector(state => state);
 
   return (
     <>
-      <Form addTodo={addTodo} />
+      <Form addTodo={dispatchAddTodo} />
       <TodoList
         todos={todos}
-        completeTodo={completeTodo}
-        removeTodo={removeTodo}
+        completeTodo={dispatchCompleteTodo}
+        removeTodo={dispatchDeleteTodo}
       />
     </>
   );

@@ -9,13 +9,13 @@ function TodoList({
   completeTodo,
   removeTodo,
 }) {
-  const todoElements = todos.map((todo, i) =>
+  const todoElements = todos.map(todo =>
     <Todo
-      key={`todo-${i}`}
+      key={todo.id}
       text={todo.text}
       complete={todo.complete}
-      completeTodo={() => completeTodo(i)}
-      removeTodo={() => removeTodo(i)}
+      completeTodo={() => completeTodo(todo.id)}
+      removeTodo={() => removeTodo(todo.id)}
     />
   );
 
