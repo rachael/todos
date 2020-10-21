@@ -2,6 +2,7 @@
   width: 100%;
   padding: 0 0 2vmin 0;
   display: flex;
+  align-items: baseline;
 }
 
 .Todo-Text {
@@ -15,6 +16,7 @@
 .Todo-Complete,
 .Todo-Remove {
   cursor: pointer;
+  font-size: 80%;
 
   &:hover {
     opacity: 0.5;
