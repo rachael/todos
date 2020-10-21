@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 
 import { Form } from '..';
 import TodoList from './TodoList';
-import './Todos.scss';
 
 function Todos() {
   const [todos, setTodos] = useState([]);

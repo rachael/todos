@@ -8,6 +8,10 @@
   margin-left: 1vmin;
 }
 
+.Todo-Text_complete {
+  text-decoration: line-through;
+}
+
 .Todo-Complete,
 .Todo-Remove {
   cursor: pointer;

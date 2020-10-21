@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Todo } from '..';
 
+import './TodoList.scss';
+
 function TodoList({
   todos,
   completeTodo,
