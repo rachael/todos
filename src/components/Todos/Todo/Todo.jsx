@@ -23,13 +23,13 @@ function Todo({
         className="Todo-Complete"
         onClick={completeTodo}
       >
-        <FontAwesomeIcon icon={completeIcon} />
+        <FontAwesomeIcon icon={completeIcon} title="Todo-Complete" />
       </div>
       <div
         className="Todo-Remove"
         onClick={removeTodo}
       >
-        <FontAwesomeIcon icon={faTimes} />
+        <FontAwesomeIcon icon={faTimes} title="Todo-Remove" />
       </div>
       <div className={todoClasses}>
         {text}
