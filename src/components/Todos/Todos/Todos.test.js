@@ -1,21 +1,29 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import reducer, { initialState } from 'redux/reducers';
 import Todos from './Todos';
 
+function renderWithProviders(ui, { reduxState } = {}) {
+  const store = createStore(reducer, reduxState || initialState);
+  return render(<Provider store={store}>{ui}</Provider>);
+}
+
 test('renders without crashing', () => {
-  const div = document.createElement('div');
-  render(<Todos />, div);
+  renderWithProviders(<Todos />);
 });
 
 test('renders initial prompt', () => {
-  const { getByPlaceholderText } = render(<Todos />);
+  const { getByPlaceholderText } = renderWithProviders(<Todos />);
   const promptElement = getByPlaceholderText(/What do you need to do?/i);
   expect(promptElement).toBeInTheDocument();
 });
 
 test('can add todo', () => {
-  const { getByPlaceholderText, getByText } = render(<Todos />);
+  const { getByPlaceholderText, getByText } = renderWithProviders(<Todos />);
   const promptElement = getByPlaceholderText(/What do you need to do?/i);
   userEvent.type(promptElement, 'something{enter}');
   const todoElement = getByText(/something/i);
@@ -23,7 +31,7 @@ test('can add todo', () => {
 });
 
 test('can add multiple todos', () => {
-  const { getByPlaceholderText, getByText } = render(<Todos />);
+  const { getByPlaceholderText, getByText } = renderWithProviders(<Todos />);
   const promptElement = getByPlaceholderText(/What do you need to do?/i);
   userEvent.type(promptElement, 'something{enter}');
   userEvent.type(promptElement, 'smth else{enter}');
@@ -34,7 +42,7 @@ test('can add multiple todos', () => {
 });
 
 test('can complete todo', () => {
-  const { getByPlaceholderText, getByText, getByTitle } = render(<Todos />);
+  const { getByPlaceholderText, getByText, getByTitle } = renderWithProviders(<Todos />);
   const promptElement = getByPlaceholderText(/What do you need to do?/i);
   userEvent.type(promptElement, 'something{enter}');
   const completeElement = getByTitle(/Todo-Complete/i);
@@ -44,7 +52,7 @@ test('can complete todo', () => {
 });
 
 test('can add multiple todos and complete single todo', () => {
-  const { getByPlaceholderText, getByText, getAllByTitle } = render(<Todos />);
+  const { getByPlaceholderText, getByText, getAllByTitle } = renderWithProviders(<Todos />);
   const promptElement = getByPlaceholderText(/What do you need to do?/i);
   userEvent.type(promptElement, 'something{enter}');
   userEvent.type(promptElement, 'smth else{enter}');
@@ -57,7 +65,7 @@ test('can add multiple todos and complete single todo', () => {
 });
 
 test('can remove todo', () => {
-  const { getByPlaceholderText, getByText, getByTitle } = render(<Todos />);
+  const { getByPlaceholderText, getByText, getByTitle } = renderWithProviders(<Todos />);
   const promptElement = getByPlaceholderText(/What do you need to do?/i);
   userEvent.type(promptElement, 'something{enter}');
   const todoElement = getByText(/something/i);
@@ -67,7 +75,7 @@ test('can remove todo', () => {
 });
 
 test('can add multiple todos and remove single todo', () => {
-  const { getByPlaceholderText, getByText, getAllByTitle } = render(<Todos />);
+  const { getByPlaceholderText, getByText, getAllByTitle } = renderWithProviders(<Todos />);
   const promptElement = getByPlaceholderText(/What do you need to do?/i);
   userEvent.type(promptElement, 'something{enter}');
   userEvent.type(promptElement, 'smth else{enter}');

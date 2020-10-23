@@ -4,7 +4,7 @@ import {
   COMPLETE_TODO,
 } from '../constants/ActionTypes'
 
-const initialState = []
+export const initialState = []
 
 // source:
 
